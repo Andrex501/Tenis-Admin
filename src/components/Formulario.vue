@@ -210,7 +210,7 @@ const subirProducto = async () => {
   formData.append("imagen", imagen.value);
 
   try {
-    const respuesta = await fetch("http://localhost:5001/productos", {
+    const respuesta = await fetch("https://tenis-admin.onrender.com/productos", {
       method: "POST",
       body: formData,
     });

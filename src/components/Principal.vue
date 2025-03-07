@@ -144,7 +144,7 @@ const productos = ref([]); // Almacenará los productos
 // Función para obtener los productos desde el backend
 const obtenerProductos = async () => {
   try {
-    const respuesta = await axios.get("http://localhost:5001/productos");
+    const respuesta = await axios.get("https://tenis-admin.onrender.com/productos");
     
    productos.value = respuesta.data;
  
