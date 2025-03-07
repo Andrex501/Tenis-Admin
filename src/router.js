@@ -1,16 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Formulario from './components/Formulario.vue'; // Asegúrate de que la ruta sea correcta
-
+import Principal from './components/Principal.vue';
 const routes = [
   {
     path: '/', // Página principal (puedes cambiar esto si es necesario)
-    name: 'Principal',
-    component: () => import('./components/Principal.vue'), // Componente de inicio, si lo tienes
+    name: 'Formulario',
+    component: Formulario, // Componente de inicio, si lo tienes
   },
   {
-    path: '/formulario', // Ruta para la página del formulario
-    name: 'Formulario',
-    component: Formulario,
+    path: '/Principal', // Ruta para la página del formulario
+    name: 'principal',
+    component: Principal,
   },
 ];
 
