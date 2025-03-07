@@ -7,5 +7,5 @@ export default defineConfig({
   build: {
     outDir: 'dist', // Render espera los archivos en "dist"
   },
-  base: './', // Mantener '/' si la app está en la raíz del dominio
+  base: '/', // Mantener '/' si la app está en la raíz del dominio
 })
