@@ -34,11 +34,20 @@ dbConexion();
 // Ruta para agregar un producto con imagen
 app.post("/productos", upload.single("imagen"), async (req, res) => {
     try {
-        const { nombre, precio, stock } = req.body;
+        console.log("Datos recibidos:", req.body);
+        console.log("Archivo recibido:", req.file);
+
+        const { nombre, marca, precio, stock } = req.body;
+
+        if (!nombre || !marca || !precio || !stock) {
+            return res.status(400).json({ error: "Todos los campos son requeridos" });
+        }
+
         const imagenBase64 = req.file.buffer.toString("base64"); // Convertir imagen a Base64
 
         const nuevoProducto = new Producto({
             nombre,
+            marca,
             precio,
             stock,
             imagen: `data:image/jpeg;base64,${imagenBase64}`,
@@ -47,10 +56,14 @@ app.post("/productos", upload.single("imagen"), async (req, res) => {
         await nuevoProducto.save();
         res.status(201).json(nuevoProducto);
     } catch (error) {
-        console.error("Error al guardar el producto:", error); // Agrega un log de error
+        console.error("Error al guardar el producto:", error);
         res.status(500).json({ error: "Error al guardar el producto" });
     }
 });
+
+
+
+
 
 // Ruta para obtener todos los productos
 app.get("/productos", async (req, res) => {

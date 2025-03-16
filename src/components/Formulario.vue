@@ -11,6 +11,11 @@
     </label> 
 
     <label>
+        <input v-model="marca" class="input" type="text" required>
+        <span>Marca</span>
+    </label> 
+
+    <label>
         <input v-model="precio" class="input" type="number" required>
         <span>Precio</span>
     </label> 
@@ -194,6 +199,7 @@ body {
 import { ref } from "vue";
 
 const nombre = ref('');
+const marca = ref('');
 const precio = ref('');
 const stock = ref('');
 const imagen = ref(null);
@@ -203,11 +209,14 @@ const cargarImagen = (event) => {
 };
 
 const subirProducto = async () => {
+
   const formData = new FormData();
-  formData.append("nombre", nombre.value);
+  formData.append("nombre", nombre.value.trim());
+  formData.append("marca", marca.value.trim());
   formData.append("precio", precio.value);
   formData.append("stock", stock.value);
   formData.append("imagen", imagen.value);
+
 
   try {
     const respuesta = await fetch("https://tenis-admin.onrender.com/productos", {
@@ -220,8 +229,10 @@ const subirProducto = async () => {
       console.log("Producto guardado:", datos);
       alert("Producto enviado correctamente");
 
+
       // Limpiar los campos después del envío
       nombre.value = '';
+      marca.value = '';
       precio.value = '';
       stock.value = '';
       imagen.value = null;
